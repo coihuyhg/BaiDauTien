@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/TrangChu.dart';
 
 class Comment extends StatefulWidget {
   @override
@@ -35,7 +36,9 @@ class _CommentState extends State<Comment> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Text("X")
+                              TextButton(onPressed: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                                }, child: Text("X"))
                             ],
                           ),
                         )

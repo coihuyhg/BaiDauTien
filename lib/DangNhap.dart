@@ -15,9 +15,9 @@ class _LoginState extends State<Login> {
     TextEditingController _userController = new TextEditingController();
     TextEditingController _passController = new TextEditingController();
     var _userNameErr = "Email k duoc trong";
-    var _passErr = "";
-    bool _userInvalid = false;
-    var _passInvalid = false;
+    var _passErr = "Mat khau k duoc trong";
+    bool _userInvalid = true;
+    bool _passInvalid = true;
     var url = Uri.parse('https://reqres.in/api/login');
 
     return Scaffold(
@@ -94,6 +94,7 @@ class _LoginState extends State<Login> {
                     FlatButton(
                         textColor: Colors.blue,
                         onPressed: () {
+
                           Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
                         },
                         child: Text("Sign Up")),
