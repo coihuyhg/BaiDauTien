@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/DangNhap.dart';
+import 'package:flutter_app/Screen/Login.dart';
 
 //Da sua lai
 void main() {

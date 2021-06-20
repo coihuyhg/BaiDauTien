@@ -6,16 +6,20 @@ String loginResponToJson(LoginRespon data) => json.encode(data.toJson());
 
 class LoginRespon {
   LoginRespon({
-    this.token,
+    this.tokenType,
+    this.accessToken,
   });
 
-  String token;
+  String tokenType;
+  String accessToken;
 
   factory LoginRespon.fromJson(Map<String, dynamic> json) => LoginRespon(
-    token: json["token"],
+    tokenType: json["tokenType"],
+    accessToken: json["accessToken"],
   );
 
   Map<String, dynamic> toJson() => {
-    "token": token,
+    "tokenType": tokenType,
+    "accessToken": accessToken,
   };
 }
