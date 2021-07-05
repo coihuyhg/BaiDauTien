@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 
-class text_field_Login extends StatelessWidget {
+class TextFieldLogin extends StatelessWidget {
   TextEditingController textEditingController;
   String hintText;
   String errorText;
+  Function(String) onChanged;
 
-  text_field_Login({
+  TextFieldLogin({
     @required this.textEditingController,
     @required this.hintText,
-    @required this.errorText
+    @required this.errorText,
+    @required this.onChanged,
 });
   Widget build (BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       controller: textEditingController,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/Screen/Login.dart';
+import 'package:flutter_app/screens/splash.dart';
 
 //Da sua lai
 void main() {
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "Bài viết nổi bật",
-      home: Login()
+      home: Splash()
     );
   }
 }
