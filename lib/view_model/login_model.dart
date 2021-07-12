@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/end_point.dart';
 import 'package:flutter_app/model/login_responses.dart';
-import 'package:flutter_app/screens/home.dart';
+import 'package:flutter_app/router/router_name.dart';
 import 'package:flutter_app/view_model/base_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,8 +36,7 @@ class LoginModel extends BaseModel {
       await pre.setString("token", token);
       await pre.setString("tokenType", tokenType);
       if (token != null && token.isNotEmpty) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
+        Navigator.pushReplacementNamed(context, RouterName.home);
       }
     } else if (response.statusCode == 400) {
       final snackBar = SnackBar(content: Text('Dang Nhap that bai !'));

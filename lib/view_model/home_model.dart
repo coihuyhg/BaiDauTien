@@ -30,6 +30,6 @@ class HomeModel extends BaseModel {
 
   Future<void> logout() async {
     SharedPreferences pre = await SharedPreferences.getInstance();
-    pre.remove('token');
+    pre.remove("token");
   }
 }

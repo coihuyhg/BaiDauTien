@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/router/router_name.dart';
 import 'package:flutter_app/view_model/comment_model.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,11 @@ class _CommentState extends State<Comment> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back), onPressed: () {
+            Navigator.pushReplacementNamed(context, RouterName.home);
+        },
+        ),
         backgroundColor: Colors.lightBlue,
         title: Text("Bình luận"),
         centerTitle: true,

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/screens/comment.dart';
-import 'package:flutter_app/screens/login.dart';
+import 'package:flutter_app/router/router_name.dart';
 import 'package:flutter_app/view_model/home_model.dart';
+import 'package:flutter_app/view_model/theme_model.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -17,22 +17,42 @@ class _HomePageState extends State<HomePage> {
       child: Consumer<HomeModel>(
         builder: (context, model, _) => Scaffold(
           drawer: Drawer(
-            child: ListView(
-              children: [
-                Text("abc"),
-                TextButton(
-                    onPressed: () async {
-                      await model.logout();
-                      Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (context) => Login()));
+            child: Container(
+              child: ListView(
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, RouterName.profile);
                     },
-                    child: Text("Đăng xuất")),
-              ],
+                    child: Text("Profile"),
+                  ),
+                  Row(
+                    children: [
+                      Text("Chế độ tối"),
+                      Switch(
+                          value: Provider.of<ThemeModel>(context).appTheme ==
+                              AppTheme.DarkMode,
+                          onChanged: (value) {
+                            Provider.of<ThemeModel>(context, listen: false)
+                                .changeTheme(value
+                                    ? AppTheme.DarkMode
+                                    : AppTheme.LightMode);
+                          }),
+                    ],
+                  ),
+                  TextButton(
+                      onPressed: () async {
+                        await model.logout();
+                        Navigator.pushReplacementNamed(
+                            context, RouterName.login);
+                      },
+                      child: Text("Đăng xuất")),
+                ],
+              ),
             ),
           ),
           appBar: AppBar(
-            automaticallyImplyLeading: true,
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.lightBlueAccent,
             title: Text("Trang chủ"),
             centerTitle: true,
             actions: [
@@ -105,11 +125,9 @@ class _HomePageState extends State<HomePage> {
                               SizedBox(height: 5.0),
                               TextButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                Comment(model.posts[i].id)));
+                                    Navigator.of(context).pushReplacementNamed(
+                                        RouterName.comment,
+                                        arguments: "${model.posts[i].id}");
                                   },
                                   child: Text("Bình luận"))
                             ],

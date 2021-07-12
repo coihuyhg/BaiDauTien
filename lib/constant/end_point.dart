@@ -3,4 +3,5 @@ class EndPoint{
   static final getPosts = "/post/class/4Y";
   static final getComment = "/comment/";
   static final getLogin = "/auth/signin";
+  static final getProfile = "/user";
 }
