@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/router/router_name.dart';
-import 'package:flutter_app/view_model/base_model.dart';
+import 'package:flutter_app/routers/router_name.dart';
+import 'package:flutter_app/views_model/base_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashModel extends BaseModel{

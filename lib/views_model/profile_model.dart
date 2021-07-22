@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_app/constant/end_point.dart';
 import 'package:flutter_app/model/profile_responses.dart';
-import 'package:flutter_app/view_model/base_model.dart';
+import 'package:flutter_app/views_model/base_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileModel extends BaseModel {

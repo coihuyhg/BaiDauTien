@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/router/router_name.dart';
+import 'package:flutter_app/routers/router_name.dart';
 import 'package:flutter_app/screens/comment.dart';
 import 'package:flutter_app/screens/home.dart';
 import 'package:flutter_app/screens/login.dart';

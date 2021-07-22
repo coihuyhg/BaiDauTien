@@ -1,28 +1,18 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/end_point.dart';
 import 'package:flutter_app/model/login_responses.dart';
-import 'package:flutter_app/router/router_name.dart';
-import 'package:flutter_app/view_model/base_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginModel extends BaseModel {
-  BuildContext context;
-  LoginModel(BuildContext context) {
-    this.context = context;
+class LoginApiService {
+  static LoginApiService _instance;
+  static LoginApiService getInstance() {
+    if (_instance == null) {
+      _instance = LoginApiService();
+    }
+    return _instance;
   }
-  String userId = "";
-  onUserIdChanged(String newUserId) {
-    userId = newUserId;
-  }
-
-  String password = "";
-  onPasswordChanged(String newPassword) {
-    password = newPassword;
-  }
-
-  Future<void> onLogin() async {
-    setLoading(true);
+  Future<bool> login(String userId, String password) async {
+    bool isSuccess;
     var params = {"account": "TEACHER"};
     var header = {"Content-Type": "application/json"};
     var response = await Dio().post("${EndPoint.baseUrl}${EndPoint.getLogin}",
@@ -35,15 +25,10 @@ class LoginModel extends BaseModel {
       SharedPreferences pre = await SharedPreferences.getInstance();
       await pre.setString("token", token);
       await pre.setString("tokenType", tokenType);
-      if (token != null && token.isNotEmpty) {
-        Navigator.pushReplacementNamed(context, RouterName.home);
-      }
+      isSuccess = true;
     } else if (response.statusCode == 400) {
-      final snackBar = SnackBar(content: Text('Dang Nhap that bai !'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      isSuccess = false;
     }
-    print(response);
-    notifyListeners();
-    setLoading(false);
+    return isSuccess;
   }
 }

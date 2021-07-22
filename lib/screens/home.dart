@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/router/router_name.dart';
-import 'package:flutter_app/view_model/home_model.dart';
-import 'package:flutter_app/view_model/theme_model.dart';
+import 'package:flutter_app/routers/router_name.dart';
+import 'package:flutter_app/views_model/home_model.dart';
+import 'package:flutter_app/views_model/theme_model.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,7 +22,8 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, RouterName.profile);
+                      Navigator.pushReplacementNamed(
+                          context, RouterName.profile);
                     },
                     child: Text("Profile"),
                   ),
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
               child: model.loading
                   ? CircularProgressIndicator()
                   : ListView.builder(
-                      itemCount: model.posts.length,
+                      itemCount: model.postNews.length,
                       itemBuilder: (context, i) => Card(
                         child: Padding(
                           padding: const EdgeInsets.all(10.0),
@@ -88,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                                           radius: 20.0,
                                           child: CircleAvatar(
                                             backgroundImage: NetworkImage(
-                                                "${model.posts[i].userAvatar}"),
+                                                "${model.postNews[i].userAvatar}"),
                                             radius: 50.0,
                                           ),
                                         ),
@@ -101,9 +102,9 @@ class _HomePageState extends State<HomePage> {
                                                 CrossAxisAlignment.start,
                                             children: [
                                               Text(
-                                                  "${model.posts[i].userName}"),
+                                                  "${model.postNews[i].userName}"),
                                               SizedBox(height: 5.0),
-                                              Text(model.posts[i].time)
+                                              Text(model.postNews[i].time)
                                             ],
                                           ),
                                         )
@@ -117,19 +118,19 @@ class _HomePageState extends State<HomePage> {
                                 ],
                               ),
                               SizedBox(height: 10.0),
-                              Text(model.posts[i].content),
+                              Text(model.postNews[i].content),
                               SizedBox(height: 10.0),
-                              model.posts[i].image != null
-                                  ? Image.network(model.posts[i].image)
+                              model.postNews[i].image != null
+                                  ? Image.network(model.postNews[i].image)
                                   : Container(),
                               SizedBox(height: 5.0),
                               TextButton(
                                   onPressed: () {
                                     Navigator.of(context).pushReplacementNamed(
                                         RouterName.comment,
-                                        arguments: "${model.posts[i].id}");
+                                        arguments: "${model.postNews[i].id}");
                                   },
-                                  child: Text("Bình luận"))
+                                  child: Text("Bình luận")),
                             ],
                           ),
                         ),

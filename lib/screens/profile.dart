@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/router/router_name.dart';
-import 'package:flutter_app/view_model/profile_model.dart';
+import 'package:flutter_app/routers/router_name.dart';
+import 'package:flutter_app/views_model/profile_model.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
-  @override
   _ProfileState createState() => _ProfileState();
 }
 
