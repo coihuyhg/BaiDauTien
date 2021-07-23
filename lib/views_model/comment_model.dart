@@ -1,30 +1,25 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_app/constant/end_point.dart';
 import 'package:flutter_app/model/comment_responses.dart';
+import 'package:flutter_app/services/comments_api.dart';
 import 'package:flutter_app/views_model/base_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:oktoast/oktoast.dart';
 
 class CommentModel extends BaseModel {
   String postId;
+  CommentApiService commentApiService;
   List<CommentRespon> postComments = [];
   CommentModel(this.postId) {
+    commentApiService = CommentApiService.getInstanceComment();
     getComment();
   }
   Future<void> getComment() async {
     setLoading(true);
-    SharedPreferences pre = await SharedPreferences.getInstance();
-    String token = pre.getString("token");
-    String tokenType = pre.getString("tokenType");
-    var header = {"Authorization": "$tokenType $token"};
-    var response = await Dio().get(
-        "${EndPoint.baseUrl}${EndPoint.getComment}$postId",
-        options: Options(headers: header));
-    print(response);
-    List<CommentRespon> newComment = (response.data as List)
-        .map((item) => CommentRespon.fromJson(item))
-        .toList();
-    postComments = newComment;
-    notifyListeners();
-    setLoading(false);
+    try {
+      postComments = await commentApiService.getComment(postId);
+      notifyListeners();
+    } catch(err) {
+      showToast("Lỗi, không thể bình luận");
+    } finally {
+      setLoading(false);
+    }
   }
 }

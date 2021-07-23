@@ -4,12 +4,12 @@ import 'package:flutter_app/model/login_responses.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginApiService {
-  static LoginApiService _instance;
-  static LoginApiService getInstance() {
-    if (_instance == null) {
-      _instance = LoginApiService();
+  static LoginApiService _instanceLogin;
+  static LoginApiService getInstanceLogin() {
+    if (_instanceLogin == null) {
+      _instanceLogin = LoginApiService();
     }
-    return _instance;
+    return _instanceLogin;
   }
   Future<bool> login(String userId, String password) async {
     bool isSuccess;

@@ -4,12 +4,12 @@ import 'package:flutter_app/model/post.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PostApiService {
-  static PostApiService _instance1;
-  static PostApiService getinstance1() {
-    if (_instance1 == null) {
-      _instance1 = PostApiService();
+  static PostApiService _instancePost;
+  static PostApiService getInstancePost() {
+    if (_instancePost == null) {
+      _instancePost = PostApiService();
     }
-    return _instance1;
+    return _instancePost;
 }
   Future<List<Post>> getPost() async {
     SharedPreferences pre = await SharedPreferences.getInstance();

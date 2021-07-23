@@ -1,29 +1,24 @@
-import 'package:dio/dio.dart';
-import 'package:flutter_app/constant/end_point.dart';
 import 'package:flutter_app/model/profile_responses.dart';
+import 'package:flutter_app/services/profile_api.dart';
 import 'package:flutter_app/views_model/base_model.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:oktoast/oktoast.dart';
 
 class ProfileModel extends BaseModel {
+  ProfileApiService profileApiService;
   ProfileRespon profile;
   ProfileModel() {
+    profileApiService = ProfileApiService.getinstanceProfile();
     onProfile();
   }
   Future<void> onProfile() async {
     setLoading(true);
-    SharedPreferences pre = await SharedPreferences.getInstance();
-    String token = pre.getString("token");
-    String tokenType = pre.getString("tokenType");
-    var headers = {
-      "Authorization": "$tokenType $token",
-      "Content-Type": "application/json",
-    };
-    var response = await Dio().get("${EndPoint.baseUrl}${EndPoint.getProfile}",
-        options: Options(headers: headers));
-    print(response);
-    ProfileRespon newProfile = ProfileRespon.fromJson(response.data);
-    profile = newProfile;
-    notifyListeners();
-    setLoading(false);
+    try {
+      profile = await profileApiService.onProfile();
+      notifyListeners();
+    } catch(err) {
+      showToast("Lỗi, không xem được trang cá nhân!");
+    } finally {
+      setLoading(false);
+    }
   }
 }

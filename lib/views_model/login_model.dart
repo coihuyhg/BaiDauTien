@@ -9,7 +9,7 @@ class LoginModel extends BaseModel {
   BuildContext context;
   LoginModel(BuildContext context) {
     this.context = context;
-    loginApiService = LoginApiService.getInstance();
+    loginApiService = LoginApiService.getInstanceLogin();
   }
   String userId = "";
   onUserIdChanged(String newUserId) {
@@ -28,13 +28,12 @@ class LoginModel extends BaseModel {
       if (isSuccess == true) {
         Navigator.pushReplacementNamed(context, RouterName.home);
       } else {
-        // final snackBar = SnackBar(content: Text('Đăng nhập thất bại !'));
-        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
-        showToast("Dang nhap that bai!");
+        final snackBar = SnackBar(content: Text('Đăng nhập thất bại !'));
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
       notifyListeners();
-    } catch(err) {
-      showToast("Dang nhap that bai!");
+    } catch (err) {
+      showToast("Đăng nhập thất bại!");
     } finally {
       setLoading(false);
     }
