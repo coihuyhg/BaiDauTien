@@ -22,4 +22,6 @@ class CommentModel extends BaseModel {
       setLoading(false);
     }
   }
+
+  Future<void> delete() async {}
 }

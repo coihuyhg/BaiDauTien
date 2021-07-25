@@ -12,23 +12,32 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ChangeNotifierProvider<SplashModel>(
-          create: (context) => SplashModel(context),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Consumer<SplashModel>(
-                builder: (context, value, child) => Image.asset("assets/icon.png", width: 100.0, height: 100.0,),
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        color: Colors.white,
+        child: Center(
+          child: ChangeNotifierProvider<SplashModel>(
+            create: (context) => SplashModel(context),
+            child: Consumer<SplashModel>(
+              builder: (context, value, child) => Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget> [
+                  Image.asset(
+                    "assets/logo_icon.png",
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    height: MediaQuery.of(context).size.width * 0.6,
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.width / 10,
+                  ),
+                  SpinKitFadingCircle(
+                    color: Colors.red[900],
+                    size: 50.0,
+                  )
+                ],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.width / 10,
-              ),
-              SpinKitFadingCircle(
-                color: Colors.black,
-                size: 50.0,
-              )
-            ],
+            ),
           ),
         ),
       ),
