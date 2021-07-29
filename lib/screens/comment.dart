@@ -30,7 +30,7 @@ class _CommentState extends State<Comment> {
                 Navigator.pushReplacementNamed(context, RouterName.home);
               },
             ),
-            backgroundColor: Colors.lightBlue,
+            backgroundColor: Colors.red[900],
             title: Text("Bình luận"),
             centerTitle: true,
           ),
@@ -146,16 +146,7 @@ class _CommentState extends State<Comment> {
                               ),
                             ),
                             Container(
-                              decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                    Colors.deepPurple,
-                                    Colors.deepPurpleAccent,
-                                    Colors.blue,
-                                    Colors.blueAccent,
-                                  ],
-                                      begin: FractionalOffset.bottomCenter,
-                                      end: FractionalOffset.topCenter)),
+                              color: Colors.red[900],
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,

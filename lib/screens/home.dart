@@ -42,6 +42,12 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                   TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                            context, RouterName.schedule);
+                      },
+                      child: Text("Lịch làm việc")),
+                  TextButton(
                       onPressed: () async {
                         await model.logout();
                         Navigator.pushReplacementNamed(
@@ -53,7 +59,7 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           appBar: AppBar(
-            backgroundColor: Colors.lightBlueAccent,
+            backgroundColor: Colors.red[900],
             title: Text("Trang chủ"),
             centerTitle: true,
             actions: [

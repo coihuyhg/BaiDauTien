@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/routers/router_name.dart';
 import 'package:flutter_app/screens/comment.dart';
+import 'package:flutter_app/screens/forget_password.dart';
 import 'package:flutter_app/screens/home.dart';
 import 'package:flutter_app/screens/login.dart';
 import 'package:flutter_app/screens/profile.dart';
+import 'package:flutter_app/screens/schedule.dart';
 import 'package:flutter_app/screens/splash.dart';
 
 class MainRouter {
@@ -19,6 +21,10 @@ class MainRouter {
         return MaterialPageRoute<dynamic>(builder: (_) => Comment(settings.arguments));
       case RouterName.profile:
         return MaterialPageRoute<dynamic>(builder: (_) => Profile());
+      case RouterName.forgetPassword:
+        return MaterialPageRoute<dynamic>(builder: (_) => ForgetPassword());
+      case RouterName.schedule:
+        return MaterialPageRoute<dynamic>(builder: (_) => Schedule(settings.arguments));
       default:
         return MaterialPageRoute<dynamic>(builder: (_) => Scaffold(body: Text("Trang không tồn tại"),));
     }

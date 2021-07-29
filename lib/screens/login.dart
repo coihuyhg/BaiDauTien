@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter_app/routers/router_name.dart';
 import 'package:flutter_app/views_model/login_model.dart';
-import 'package:flutter_app/widget/logo.dart';
+import 'package:flutter_app/widget/text_button_login.dart';
 import 'package:flutter_app/widget/text_form_field.dart';
 import 'package:provider/provider.dart';
 import 'package:validatorless/validatorless.dart';
@@ -40,7 +41,7 @@ class _LoginState extends State<Login> {
                                       MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     //Logo(),
-                                    Image.asset("assets/logo_icon"),
+                                    Image.asset("assets/logo_icon.png"),
                                     Form(
                                       key: _formKey,
                                       child: Column(
@@ -91,8 +92,11 @@ class _LoginState extends State<Login> {
                                                 padding: const EdgeInsets.only(
                                                     right: 30),
                                                 child: TextButton(
-                                                  onPressed: () {},
-                                                  child: Text("Quên mật khẩu ?"),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pushReplacementNamed(RouterName.forgetPassword);
+                                                  },
+                                                  child:
+                                                      Text("Quên mật khẩu ?"),
                                                 ),
                                               )
                                             ],
@@ -103,9 +107,9 @@ class _LoginState extends State<Login> {
                                     Column(
                                       children: <Widget>[
                                         Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              0, 10, 0, 10),
-                                          child: TextButton(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                0, 10, 0, 10),
+                                            child: TextButtonLogin(
                                               onPressed: () async {
                                                 bool isValid = _formKey
                                                     .currentState
@@ -114,10 +118,13 @@ class _LoginState extends State<Login> {
                                                   await model.onLogin();
                                                 }
                                               },
-                                              child: Text("Đăng nhập")),
-                                        ),
+                                              title: ("Đăng nhập"),
+                                            )),
                                         SizedBox(
-                                          height: MediaQuery.of(context).size.height / 10,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              10,
                                         )
                                       ],
                                     )

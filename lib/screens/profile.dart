@@ -23,7 +23,7 @@ class _ProfileState extends State<Profile> {
                             context, RouterName.home);
                       },
                     ),
-                    backgroundColor: Colors.lightBlue,
+                    backgroundColor: Colors.red[900],
                     title: Text("Profile"),
                     centerTitle: true,
                     actions: [
@@ -99,6 +99,22 @@ class _ProfileState extends State<Profile> {
                                           style: TextStyle(fontSize: 20.0))
                                     ],
                                   ),
+                                  Container(
+                                    width: 200,
+                                    height: 200,
+                                    decoration: BoxDecoration(
+                                      gradient: LinearGradient(
+                                        begin: Alignment.topLeft,
+                                        end: Alignment.bottomRight,
+                                        colors: [
+                                          Colors.red,
+                                          Colors.white,
+                                          Colors.green,
+                                          Colors.blue,
+                                        ]
+                                      )
+                                    ),
+                                  )
                                 ],
                               )),
                   ]),
